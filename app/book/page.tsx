@@ -15,16 +15,39 @@ export default function BookPage() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [confirmed, setConfirmed] = useState(false);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [date, setDate] = useState("");
+  const [error, setError] = useState("");
 
   const chosen = services.find((service) => service.name === selectedService);
+
+  function handleConfirm() {
+    if (name.trim().length < 2) {
+      setError("Please enter your name.");
+      return;
+    }
+    const digits = phone.replace(/\D/g, "");
+    if (digits.length < 10) {
+      setError("Please enter a valid phone number.");
+      return;
+    }
+    if (!date) {
+      setError("Please choose a date.");
+      return;
+    }
+    setError("");
+    setConfirmed(true);
+  }
 
   if (confirmed) {
     return (
       <main className="min-h-screen flex flex-col items-center justify-center gap-4 p-8 text-center">
-        <h1 className="text-4xl font-bold">You're booked! 🎉</h1>
+        <h1 className="text-4xl font-bold">You're booked, {name}! 🎉</h1>
         <p className="text-lg text-gray-400">
-          {selectedService} at {selectedTime} · ${chosen?.price}
+          {selectedService} on {date} at {selectedTime} · ${chosen?.price}
         </p>
+        <p className="text-sm text-gray-500">We'll send a reminder to {phone}.</p>
         <button
           onClick={() => {
             setConfirmed(false);
@@ -84,9 +107,34 @@ export default function BookPage() {
         </div>
       </section>
 
+      <section className="w-full max-w-2xl flex flex-col gap-3">
+        <h2 className="text-xl font-semibold">3. Your details</h2>
+        <input
+          type="text"
+          placeholder="Full name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="rounded-xl border border-gray-700 bg-transparent px-4 py-3"
+        />
+        <input
+          type="tel"
+          placeholder="Phone number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          className="rounded-xl border border-gray-700 bg-transparent px-4 py-3"
+        />
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          className="rounded-xl border border-gray-700 bg-transparent px-4 py-3 [color-scheme:dark]"
+        />
+        {error && <p className="text-red-400 text-sm">{error}</p>}
+      </section>
+
       <button
         disabled={!selectedService || !selectedTime}
-        onClick={() => setConfirmed(true)}
+        onClick={handleConfirm}
         className="bg-green-600 text-white px-8 py-3 rounded-xl font-semibold disabled:opacity-40"
       >
         Confirm booking
