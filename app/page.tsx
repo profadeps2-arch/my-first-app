@@ -1,6 +1,6 @@
 function ServiceCard({ title, description }: { title: string; description: string }) {
   return (
-    <div className="rounded-xl border border-gray-700 p-6 flex flex-col gap-2">
+    <div className="rounded-3xl border border-gray-700 p-6 flex flex-col gap-2">
       <h3 className="text-xl font-bold">{title}</h3>
       <p className="text-gray-400">{description}</p>
     </div>
