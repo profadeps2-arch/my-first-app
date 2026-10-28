@@ -15,13 +15,13 @@ export default function Home() {
         <p className="text-lg text-gray-400">I build AI-powered web apps for founders and small businesses.</p>
         <a
           href="mailto:Profadeps2@gmail.com"
-          className="bg-green-600 text-white px-6 py-3 rounded-xl font-semibold"
+          className="bg-green-600 text-white px-6 py-3 rounded-3xl font-semibold"
         >
           Work with me
         </a>
       </section>
 
-      <section className="grid gap-6 md:grid-cols-4 rounded-x3 max-w-5xl w-full">
+      <section className="grid gap-6 md:grid-cols-4 max-w-5xl w-full">
         <ServiceCard
           title="MVP Development"
           description="Turn your idea into a working app real users can sign up to and use."
