@@ -36,7 +36,7 @@ export default function Home() {
         />
         <ServiceCard
           title="Landing Pages"
-          description="Turn your idea into a working app real users can sign up to and use."
+          description="High-converting pages that turn visitors into signups, leads and sales."
         />
       </section>
     </main>
